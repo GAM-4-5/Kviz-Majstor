@@ -4,14 +4,17 @@ import os
 from random import *
 from tkinter import messagebox
 
+#stvaranje tkinter prozora
 root=Tk()
 root.resizable(width=False, height=False)
 root.title("Kviz Majstor")
 root.configure(background='white')
 
+#konfiguracija grid-a
 Grid.rowconfigure(root, 0, weight=1)
 Grid.columnconfigure(root, 0, weight=1)
 
+#stvaranje varijabli i lista
 lkviz=[]
 settings=[]
 tocan_odg=0
@@ -27,6 +30,7 @@ b50_akt=0
 odg_open=[]
 game_end=0
 
+
 odg_lista.append(0)
 odg_lista.append(0)
 odg_open.append(1)
@@ -35,6 +39,8 @@ odg_open.append(1)
 odg_open.append(1)
 odg_open.append(1)
 
+
+#stvaranje glavnih gumba i pitanja za igru
 lpitanje=Label(root,text="Pitanje??")
 b_odg1=Button(root,text="ODG1")
 b_odg2=Button(root,text="ODG2")
@@ -42,7 +48,7 @@ b_odg3=Button(root,text="ODG3")
 b_odg4=Button(root,text="ODG4")
 b_fin=Button(root,text="--->")
 
-
+#stvaranje sporednih gumba
 lime=Label(root,text='TEST')
 ltocni=Label(root,text='0')
 lnetocni=Label(root,text='0')
@@ -53,7 +59,7 @@ b_50=Button(root,text='50/50')
 ldno=Label(root)
 
 
-
+#funkcija kraja igre
 def game_over():
     global b_odg1
     global b_odg2
@@ -95,7 +101,7 @@ def showcontent(event):
 
 
 
-#KVIZ
+#POČETAK KVIZA
 def start_kviz():
     global lkviz
     global settings
@@ -151,14 +157,10 @@ def start_kviz():
     lnetocni.config(width=10,background='red')
     ljoker.config(text=str(br_joker))
     l50.config(text=str(br_50))
-
-   # if mode==0:
-        #lnetocni.config(text=str((len(lkviz)-1)/5))
-    
-    
-    #print(settings)
     new_question()
 
+
+#NOVO PITANJE
 def new_question():
     global lkviz
     global lpitanje
@@ -190,7 +192,7 @@ def new_question():
     print(pitanje_poz)
     odgovori=[]
     pitanje=lkviz[pitanje_poz]
-    #print(len(lkviz))
+    
     for i in range(4):
         odgovori.append(lkviz[pitanje_poz+1+i])
     for i in range(5):
@@ -212,6 +214,8 @@ def new_question():
     print(odgovori)
     print(tocan_odg)
 
+
+#resetiranje oblikovanja gumba
 def reset_b():
     global b_odg1
     global b_odg2
@@ -226,7 +230,9 @@ def reset_b():
         b_odg3.config(background='white',fg='black')
     if odg_open[4]==1:
         b_odg4.config(background='white',fg='black')
-    
+
+
+#odabir prvog odgovora
 def select_odg1():
     global selected_odg
     global b_odg1
@@ -238,6 +244,7 @@ def select_odg1():
         print(1)
         b_odg1.config(background='black',fg='white')
 
+#odabir drugog odgovora
 def select_odg2():
     global selected_odg
     global b_odg2
@@ -248,6 +255,7 @@ def select_odg2():
        # print(2)
         b_odg2.config(background='black',fg='white')
 
+#odabir trećeg odgovora
 def select_odg3():
     global selected_odg
     global b_odg3
@@ -258,6 +266,7 @@ def select_odg3():
        # print(3)
         b_odg3.config(background='black',fg='white')
 
+#odabir četvrtog odgovora
 def select_odg4():
     global selected_odg
     global b_odg4
@@ -268,6 +277,7 @@ def select_odg4():
        # print(4)
         b_odg4.config(background='black',fg='white')
 
+#korištenje jokera
 def use_joker():
     global br_joker
     global ljoker
@@ -281,6 +291,8 @@ def use_joker():
         else:
             messagebox.showwarning("Čekaj malo!!", "Nemaš više jokera.")
 
+
+#korištenje 50/50
 def use_50():
     global br_50
     global l50
@@ -315,6 +327,8 @@ def use_50():
         else:
             messagebox.showwarning("Čekaj malo!!", "Nemaš više 50/50.")
 
+
+#"zaključivanje" odgovora
 def fin_odg():
     global selected_odg
     global tocan_odg
@@ -389,14 +403,13 @@ lbox.bind("<<ListboxSelect>>", showcontent)
 b1 = Button(root,text="SELECT", command=select_kviz)
 b1.pack()
 
-
+#dodavanje funkcija gumbima
 b_odg1.configure(command=select_odg1)
 b_odg2.configure(command=select_odg2)
 b_odg3.configure(command=select_odg3)
 b_odg4.configure(command=select_odg4)
 b_fin.configure(command=fin_odg)
 b_50.configure(command=use_50)
-
 b_joker.configure(command=use_joker)
 
 mainloop()
