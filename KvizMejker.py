@@ -4,6 +4,7 @@ import os
 from random import *
 from tkinter import messagebox
 import shutil
+import sys
 
 #stvaranje tkinter prozora
 root=Tk()
@@ -30,8 +31,13 @@ todg2.grid(row=3,column=0,rowspan=1,columnspan=4,sticky="NESW")
 todg3.grid(row=4,column=0,rowspan=1,columnspan=4,sticky="NESW")
 todg4.grid(row=5,column=0,rowspan=1,columnspan=4,sticky="NESW")
 
+tpitanje.insert(END, "'Pitanje'")
+todg1.insert(END, "'Tocan odgovor'")
+todg2.insert(END, "'Krivi odgovor'")
+todg3.insert(END, "'Krivi odgovor'")
+todg4.insert(END, "'Krivi odgovor'")
 
-lime=Label(root,text="Ime:")
+lime=Label(root,text="Ime kviza:")
 eime=Entry(root)
 lbrpitanja=Label(root,text="1")
 gnazad=Button(root,text="<---")
@@ -42,7 +48,11 @@ lbrjokera=Label(root,text="Br. jokera:")
 ebrjokera=Entry(root)
 lbr50=Label(root,text="Br. 50/50:")
 ebr50=Entry(root,text="0")
-gsave=Button(root,text="SAVE")
+gsave=Button(root,text="SAVE & EXIT")
+
+ebr50.insert(END, '0')
+eime.insert(END, "'Ime kviza'")
+ebrjokera.insert(END, '0')
 
 lime.grid(row=0,column=4,columnspan=1,sticky="NESW")
 eime.grid(row=0,column=5,columnspan=3,sticky="NESW")
@@ -61,6 +71,8 @@ gsave.grid(row=5,column=4,columnspan=4,sticky="NESW")
 lkviz=[]
 cur_pitanje=1
 br_modea=1
+
+
 
 #spremanje trenutnog pitanja
 def cur_save():
@@ -129,7 +141,7 @@ def naprijed():
     cur_pitanje+=1;
     cur_load()
     lbrpitanja.configure(text=str(cur_pitanje))
-    print(cur_pitanje)
+    #print(cur_pitanje)
 
 #prijašnje pitanje   
 def nazad():
@@ -140,9 +152,9 @@ def nazad():
         cur_pitanje+=-1;
     cur_load()
     lbrpitanja.configure(text=str(cur_pitanje))
-    print(cur_pitanje)
+    #print(cur_pitanje)
 
-#spremanje cijelog kviza u .txt file
+#spremanje cijelog kviza u .txt file i gašenje programa
 def save():
     global eime
     global br_modea
@@ -155,26 +167,49 @@ def save():
     
     cur_save()
     ime=ime.replace(" ","_")
-    print(ime," ",br_modea," ",brjokera," ",br50)
+    #print(ime," ",br_modea," ",brjokera," ",br50)
     for i in range(len(lkviz)):
         for j in range(5):
             lkviz[i][j]=lkviz[i][j].replace('\n','')
-            print(lkviz[i][j])
+    #        print(lkviz[i][j])
     #print(lkviz)
             
     f=open((ime+".txt"),"w+")
-    f.write(ime+" "+str(br_modea)+" "+str(brjokera)+" "+str(br50)+"\n")
+    f.write(ime+" "+str(br_modea)+" "+str(brjokera)+" "+str(br50))
     for i in range(len(lkviz)):
-        for j in range(5):
-            f.write(str(lkviz[i][j])+"\n")
+        if(lkviz[i][0]!=""):
+            for j in range(5):
+                f.write("\n"+str(lkviz[i][j]))
     
     f.close()
-    shutil.move((ime+".txt"), 'Kvizovi/')       
+    shutil.move((ime+".txt"), 'Kvizovi/')
+    os._exit(1)
 
+#odabir mode-a "Endless"
+def select_endless():
+    global br_modea
+    global gendless
+    global gsurvival
+    gendless.configure(fg='white',bg='black')
+    gsurvival.configure(fg='black',bg='white')
+    br_modea=1
+
+#odabir mode-a "Survival"
+def select_survival():
+    global br_modea
+    global gendless
+    global gsurvival
+    gendless.configure(fg='black',bg='white')
+    gsurvival.configure(fg='white',bg='black')
+    br_modea=0
+    
 #konfiguracija gumba
 gnaprijed.configure(command=naprijed)
 gnazad.configure(command=nazad)
 gsave.configure(command=save)
- 
+gendless.configure(command=select_endless)
+gsurvival.configure(command=select_survival)
+
+select_endless()
 
 mainloop()

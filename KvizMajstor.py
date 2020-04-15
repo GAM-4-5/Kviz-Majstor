@@ -158,6 +158,8 @@ def start_kviz():
     ljoker.config(text=str(br_joker))
     l50.config(text=str(br_50))
     new_question()
+    #print(lkviz)
+   # print(settings)
 
 
 #NOVO PITANJE
@@ -188,7 +190,7 @@ def new_question():
     
     reset_b()
     
-    pitanje_poz=randint(0,int((len(lkviz)-1)/5)-1)*5
+    pitanje_poz=randint(0,int((len(lkviz)-1)/5)-1)*5+1
     print(pitanje_poz)
     odgovori=[]
     pitanje=lkviz[pitanje_poz]
@@ -210,9 +212,9 @@ def new_question():
             
     lpitanje.config(text=pitanje)
     
-    print(pitanje)
-    print(odgovori)
-    print(tocan_odg)
+   # print(pitanje)
+    #print(odgovori)
+   # print(tocan_odg)
 
 
 #resetiranje oblikovanja gumba
