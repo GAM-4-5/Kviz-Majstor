@@ -137,9 +137,22 @@ def cur_load():
 def naprijed():
     global cur_pitanje
     global lbrpitanja
-    cur_save()
-    cur_pitanje+=1;
-    cur_load()
+    global tpitanje
+    global todg1
+    global todg2
+    global todg3
+    global todg4
+    pitanje=tpitanje.get("1.0","end")
+    odg1=todg1.get("1.0","end")
+    odg2=todg2.get("1.0","end")
+    odg3=todg3.get("1.0","end")
+    odg4=todg4.get("1.0","end")
+    if pitanje!="\n" and odg1!="\n" and odg2!="\n" and odg3!="\n" and odg4!="\n":
+        if pitanje!="" and odg1!="" and odg2!="" and odg3!="" and odg4!="":
+            print(","+pitanje+",")
+            cur_save()
+            cur_pitanje+=1;
+            cur_load()
     lbrpitanja.configure(text=str(cur_pitanje))
     #print(cur_pitanje)
 
@@ -147,7 +160,19 @@ def naprijed():
 def nazad():
     global cur_pitanje
     global lbrpitanja
-    cur_save()
+    global tpitanje
+    global todg1
+    global todg2
+    global todg3
+    global todg4
+    pitanje=tpitanje.get("1.0","end")
+    odg1=todg1.get("1.0","end")
+    odg2=todg2.get("1.0","end")
+    odg3=todg3.get("1.0","end")
+    odg4=todg4.get("1.0","end")
+    if pitanje!="\n" and odg1!="\n" and odg2!="\n" and odg3!="\n" and odg4!="\n":
+        if pitanje!="" and odg1!="" and odg2!="" and odg3!="" and odg4!="":
+            cur_save()
     if cur_pitanje>1:
         cur_pitanje+=-1;
     cur_load()
