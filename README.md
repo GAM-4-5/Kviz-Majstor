@@ -8,6 +8,6 @@ Python program koji služi za izradu kvizova za Kviz-MajstorⓇ.
 Idući ciljevi:
   -bugfixanje
   -kvizovi za primjer
-  -prezentacija i screencast
+  -screencast
 
 Kviz MajstorⓇ i Kviz MejkerⓇ
