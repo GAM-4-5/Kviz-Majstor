@@ -96,8 +96,6 @@ def showcontent(event):
         file = file.read() 
     fkviz=file
     lkviz=file.split('\n')
-    #print(lkviz)
-
 
 
 
@@ -114,7 +112,7 @@ def start_kviz():
     global br_joker
     global br_50
     global mode
-   # print("uspjeh")
+
     settings=lkviz[0].split()
     mode=int(settings[1])
     br_joker=int(settings[2])
@@ -158,8 +156,7 @@ def start_kviz():
     ljoker.config(text=str(br_joker))
     l50.config(text=str(br_50))
     new_question()
-    #print(lkviz)
-   # print(settings)
+
 
 
 #NOVO PITANJE
@@ -191,7 +188,6 @@ def new_question():
     reset_b()
     
     pitanje_poz=randint(0,int((len(lkviz)-1)/5)-1)*5+1
-    print(pitanje_poz)
     odgovori=[]
     pitanje=lkviz[pitanje_poz]
     
@@ -212,9 +208,6 @@ def new_question():
             
     lpitanje.config(text=pitanje)
     
-   # print(pitanje)
-    #print(odgovori)
-   # print(tocan_odg)
 
 
 #resetiranje oblikovanja gumba
@@ -243,7 +236,7 @@ def select_odg1():
     if first and odg_open[1]:
         reset_b()
         selected_odg=1
-        print(1)
+        #print(1)
         b_odg1.config(background='black',fg='white')
 
 #odabir drugog odgovora

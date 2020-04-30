@@ -4,7 +4,6 @@ import os
 from random import *
 from tkinter import messagebox
 import shutil
-import sys
 
 #stvaranje tkinter prozora
 root=Tk()
@@ -149,7 +148,7 @@ def naprijed():
     odg4=todg4.get("1.0","end")
     if pitanje!="\n" and odg1!="\n" and odg2!="\n" and odg3!="\n" and odg4!="\n":
         if pitanje!="" and odg1!="" and odg2!="" and odg3!="" and odg4!="":
-            print(","+pitanje+",")
+            #print(","+pitanje+",")
             cur_save()
             cur_pitanje+=1;
             cur_load()
