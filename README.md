@@ -6,7 +6,6 @@ Python program koji služi za igranje prethodno napravljenih kvizova.
 Python program koji služi za izradu kvizova za Kviz-MajstorⓇ.
 
 Idući ciljevi:
-  -bugfixanje
   -kvizovi za primjer
   -screencast
 
